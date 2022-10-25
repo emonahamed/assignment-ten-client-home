@@ -1,33 +1,38 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLoaderData, useParams } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
 
 const CourseDetails = () => {
     const { id } = useParams();
-    const [courseDetails, SetCourseDetails] = useState([]);
+    // const [courseDetails, SetCourseDetails] = useState([]);
 
+    const details = useLoaderData();
 
-    useEffect(() => {
-        fetch('https://developer-bee-server-7i9rd3x6t-emonahamed.vercel.app/courses')
-            .then(res => res.json())
-            .then(data => SetCourseDetails(data))
-    }, [])
-
-    console.log(courseDetails);
-
-
-
-    const details = courseDetails.find(n => n._id === id)
-
-    console.log(details);
-
-
-
+    const Eachdetails = details.find(n => n._id === id);
+    console.log(Eachdetails)
 
 
     return (
         <div>
-            <h2> </h2>
+            <Card>
+                <Card.Header> <h2>{Eachdetails.title}</h2></Card.Header>
+                <Card.Body>
+                    <Card.Title> </Card.Title>
+                    <Card.Img variant="top" src={Eachdetails.author.img} />
+                    <Card.Text className='p-3'>
+                        <h5>{Eachdetails.details}</h5>
+                    </Card.Text>
+                    <Button variant="warning">Get Premium access</Button>
+                </Card.Body>
+            </Card>
+
+
+
+
+
         </div>
     );
 };

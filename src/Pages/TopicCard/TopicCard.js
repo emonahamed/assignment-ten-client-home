@@ -15,14 +15,23 @@ const TopicCard = ({ category }) => {
 
     return (
         <div className='p-5'>
+
             <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={image_url} />
                 <Card.Body>
                     <Card.Title>{author.name}</Card.Title>
-                    <Button variant="primary"> <Link to={`/courses/${category._id}`}>Show details</Link></Button>
+                    <Button variant="dark"> <Link to={`/courses/${category._id}`}>Show details</Link></Button>
                 </Card.Body>
             </Card>
+
+
+
+
+
         </div>
+
+
+
     );
 };
 

@@ -9,12 +9,12 @@ const Header = () => {
     return (
         <Navbar bg="dark" variant="dark">
             <Container className='d-flex align-items-center justify-content-between'>
-                <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                <Navbar.Brand href="#home">Developer Bee</Navbar.Brand>
                 <Nav className='options'>
                     <Link to="/courses">courses</Link>
                     <Link to="/faq">Faq</Link>
                     <Link to="/blog">blog</Link>
-                    <Link to="/blog">blog</Link>
+                    <Link to="/login">Login</Link>
                 </Nav>
 
             </Container>
