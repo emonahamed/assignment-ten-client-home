@@ -7,9 +7,19 @@ import { FaBeer, FaGithub, FaGoogle, HiComputerDesktop } from 'react-icons/fa';
 import './Header.css'
 import { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
-import { Image } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
+import { useState } from 'react';
 
 const Header = () => {
+
+
+    const [color, setColor] = useState(false);
+
+    const buttonClick = () => {
+
+        setColor(!color)
+    }
+
 
     const { user, logOut } = useContext(AuthContext);
     console.log(user)
@@ -32,10 +42,18 @@ const Header = () => {
                     <Link to="/blog">blog</Link>
 
 
+                    <Button onClick={buttonClick} variant="outline-light">
+                        {/* {color ? <p className='text-white'>dark</p> : <p>light</p>} */}
+                        {color ? <span className=' text-danger'>dark</span> : <span className='  text-light'>light</span>}
+                    </Button>
+
+
                     {user ?
                         <>
                             <Link onClick={handleLogOut} className='mx-1 rounded' variant='outline-primary'>LogOut</Link>
-                            <Image style={{ height: "40px" }} roundedCircle src={user?.photoURL} />
+                            <div title={user?.displayName} >
+                                <Image style={{ height: "40px" }} roundedCircle src={user?.photoURL} />
+                            </div>
 
 
 
@@ -50,7 +68,7 @@ const Header = () => {
                 </Nav>
 
             </Container>
-        </Navbar>
+        </Navbar >
     );
 };
 
