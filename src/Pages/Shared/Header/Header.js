@@ -5,8 +5,22 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import { FaBeer, FaGithub, FaGoogle, HiComputerDesktop } from 'react-icons/fa';
 import './Header.css'
+import { useContext } from 'react';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import { Image } from 'react-bootstrap';
 
 const Header = () => {
+
+    const { user, logOut } = useContext(AuthContext);
+    console.log(user)
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
+
+
     return (
         <Navbar bg="dark" variant="dark">
             <Container className='d-flex align-items-center justify-content-between'>
@@ -16,9 +30,22 @@ const Header = () => {
                     <Link to="/courses">courses</Link>
                     <Link to="/faq">Faq</Link>
                     <Link to="/blog">blog</Link>
-                    <Link to="/login">  Login</Link>
 
-                    <FaGithub></FaGithub>
+
+                    {user ?
+                        <>
+                            <Link onClick={handleLogOut} className='mx-1 rounded' variant='outline-primary'>LogOut</Link>
+                            <Image style={{ height: "40px" }} roundedCircle src={user?.photoURL} />
+
+
+
+                        </>
+
+                        :
+                        <>
+                            <Link to="/login">  Login</Link>
+                        </>
+                    }
 
                 </Nav>
 
