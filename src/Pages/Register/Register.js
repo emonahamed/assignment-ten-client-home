@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -7,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
+    const [error, setError] = useState('');
 
     const { createUser } = useContext(AuthContext)
 
@@ -23,9 +25,13 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setError('');
                 form.reset();
             })
-            .catch(e => console.error(e))
+            .catch(e => {
+                console.error(e);
+                setError(e.message)
+            })
 
 
 
@@ -60,8 +66,9 @@ const Register = () => {
                 <Form.Text className="text-muted mb-5">
                     Aready Have an account? <Link to='/login'>Login</Link>
                 </Form.Text>
+                <br />
                 <Form.Text className="text-danger">
-
+                    {error}
                 </Form.Text>
             </Form>
         </Container>

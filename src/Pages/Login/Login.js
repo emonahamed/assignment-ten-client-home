@@ -2,18 +2,20 @@ import React from 'react';
 import { ButtonGroup, Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa"
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { useState } from 'react';
 
 const Login = () => {
-
-
+    const [error, setError] = useState('');
     const { providerLogin, signIn } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
+
+    const navigate = useNavigate();
 
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
@@ -21,7 +23,10 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+                console.error(error)
+                setError(error.message)
+            })
     }
 
     const handleGithubSignIn = () => {
@@ -44,8 +49,13 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                setError('');
+                navigate('/')
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+                console.error(error)
+                setError(error.message)
+            })
     }
 
 
@@ -73,6 +83,11 @@ const Login = () => {
                 <br></br>
                 <Form.Text className="text-muted mb-5">
                     New to this website ? <Link to='/register'>Register</Link>
+                </Form.Text>
+                <br />
+                <Form.Text className="text-danger">
+                    {error}
+
                 </Form.Text>
             </Form>
         </Container>
