@@ -6,14 +6,24 @@ import { Link } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa"
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
     const { providerLogin } = useContext(AuthContext);
-    const googleProvider = new GoogleAuthProvider()
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.error(error))
+    }
+
+    const handleGithubSignIn = () => {
+        providerLogin(githubProvider)
             .then(result => {
                 const user = result.user;
                 console.log(user);
@@ -40,7 +50,7 @@ const Login = () => {
                 <div>
                     <ButtonGroup className='p-2'>
                         <Button onClick={handleGoogleSignIn} className='mx-2' variant='outline-primary'> <FaGoogle></FaGoogle>  signIn with google</Button>
-                        <Button variant='outline-dark'>  <FaGithub></FaGithub>  signIn with github</Button>
+                        <Button onClick={handleGithubSignIn} variant='outline-dark'>  <FaGithub></FaGithub>  signIn with github</Button>
                     </ButtonGroup>
                 </div>
                 <br></br>
