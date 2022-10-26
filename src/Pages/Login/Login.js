@@ -11,10 +11,10 @@ import { useState } from 'react';
 
 const Login = () => {
     const [error, setError] = useState('');
-    const { providerLogin, signIn } = useContext(AuthContext);
+
+    const { providerLogin, signIn, setLoading } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
-
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -23,10 +23,13 @@ const Login = () => {
 
 
     const handleGoogleSignIn = () => {
+
         providerLogin(googleProvider)
+
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error(error)
@@ -39,6 +42,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, { replace: true });
             })
             .catch(error => console.error(error))
     }
