@@ -1,0 +1,10 @@
+.author-name {
+    text-decoration: none;
+    color: black;
+    border: 2px solid burlywood;
+    box-shadow: 1px 1px 0px 0.5px;
+    padding: 5px;
+    border-radius: 10px;
+
+
+}

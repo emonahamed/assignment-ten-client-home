@@ -2,6 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
+import './TopicCard.css'
 
 const TopicCard = ({ category }) => {
     console.log(category)
@@ -16,11 +17,12 @@ const TopicCard = ({ category }) => {
     return (
         <div className='p-5'>
 
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '10rem' }}>
                 <Card.Img variant="top" src={image_url} />
                 <Card.Body>
                     <Card.Title>{author.name}</Card.Title>
-                    <Button variant="dark"> <Link to={`/courses/${category._id}`}>Show details</Link></Button>
+                    {/* <Button variant="outline-primary"> <Link className='topic-link' to={`/courses/${category._id}`}>Show details</Link></Button> */}
+                    <Link className='topic-link' to={`/courses/${category._id}`}><Button variant="outline-primary">Show details </Button></Link>
                 </Card.Body>
             </Card>
 

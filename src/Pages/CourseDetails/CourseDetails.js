@@ -24,21 +24,20 @@ const CourseDetails = () => {
         <div >
 
             <Container>
-                <Card className='mx-auto' >
+                <Card className='mx-auto p-2' >
                     <div className='d-flex justify-content-around m-2'>
                         <Card.Header> <h2>{Eachdetails.title}</h2></Card.Header>
                         <Pdf targetRef={ref} filename="code-example.pdf">
                             {({ toPdf }) => <Button variant='outline-dark' onClick={toPdf}>Course Details  Pdf</Button>}
                         </Pdf>
                     </div>
-                    <Card.Body style={{ width: '800px', height: '100%' }} ref={ref}>
-
+                    <Card.Body style={{ width: '300px', height: '100%' }} ref={ref}>
                         <Card.Title> </Card.Title>
                         <Card.Img variant="top" className='img-fluid' src={Eachdetails.author.img} />
                         <Card.Text className='p-3'>
                             <h5>{Eachdetails.details}</h5>
                         </Card.Text>
-                        <Button variant="warning"> <Link to={`/checkout/${id}`}>Get Premium access</Link>  </Button>
+                        <Link className='text-decoration-none' to={`/checkout/${id}`}> <Button variant="warning">Get Premium access </Button></Link>
                     </Card.Body>
                 </Card>
 
