@@ -22,7 +22,7 @@ const TopicCard = ({ category }) => {
                 <Card.Body>
                     <Card.Title>{author.name}</Card.Title>
                     {/* <Button variant="outline-primary"> <Link className='topic-link' to={`/courses/${category._id}`}>Show details</Link></Button> */}
-                    <Link className='topic-link' to={`/courses/${category._id}`}><Button variant="outline-primary">Show details </Button></Link>
+                    <Link className='topic-link' to={`/courses/${category._id}`}><Button variant="outline-primary">Course details </Button></Link>
                 </Card.Body>
             </Card>
 
