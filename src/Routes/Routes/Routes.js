@@ -45,7 +45,10 @@ export const routes = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path: '/checkout',
+                path: '/checkout/:id',
+                loader: async () => {
+                    return fetch('https://developer-bee-server-7i9rd3x6t-emonahamed.vercel.app/courses');
+                },
                 element: <PrivateRoute> <CheckOut></CheckOut></PrivateRoute>
             },
             {
