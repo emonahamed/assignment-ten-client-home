@@ -8,7 +8,7 @@ My project Overview:
 * Single page website 
 * Secure 
 * beautiful and Eyecatching
-* If you wnat to premium access you must log in
+* If you want premium access you must log in
 
 4.List of technologies i have used
 * React 
