@@ -33,40 +33,33 @@ const Header = () => {
 
     return (
         <Navbar bg="dark" variant="dark">
-            <Container className='d-flex align-items-center justify-content-between'>
-                {/* <Navbar.Brand href="#home"> <FaGoogle></FaGoogle>Developer Bee</Navbar.Brand> */}
-                <Navbar.Brand href="#home">  <span className='text-color:success'><FaBeer></FaBeer></span> Developer Bee</Navbar.Brand>
-                <Nav className='options'>
-                    <Link to="/courses">courses</Link>
-                    <Link to="/faq">Faq</Link>
-                    <Link to="/blog">blog</Link>
-
-
-                    <Button onClick={buttonClick} variant="outline-light">
-                        {/* {color ? <p className='text-white'>dark</p> : <p>light</p>} */}
-                        {color ? <span className=' text-danger'>dark</span> : <span className='  text-light'>light</span>}
-                    </Button>
-
-
-                    {user ?
-                        <>
-                            <Link onClick={handleLogOut} className='mx-1 rounded' variant='outline-primary'>LogOut</Link>
-                            <div title={user?.displayName} >
-                                <Image style={{ height: "40px" }} roundedCircle src={user?.photoURL} />
-                            </div>
-
-
-
-                        </>
-
-                        :
-                        <>
-                            <Link to="/login">  Login</Link>
-                        </>
-                    }
-
-                </Nav>
-
+            <Container className='d-flex flex-wrap align-items-center justify-content-between'>
+                <div>
+                    <Link className='website-name' to='/home'><FaBeer></FaBeer> Developer Bee</Link>
+                </div>
+                <div>
+                    <Nav className='options '>
+                        <Link to="/courses">Courses</Link>
+                        <Link to="/faq">FAQ</Link>
+                        <Link to="/blog">Blog</Link>
+                        <Button onClick={buttonClick} variant="outline-light">
+                            {/* {color ? <p className='text-white'>dark</p> : <p>light</p>} */}
+                            {color ? <span className=' text-danger'>dark</span> : <span className='  text-light'>light</span>}
+                        </Button>
+                        {user ?
+                            <>
+                                <Link onClick={handleLogOut} className='mx-1 rounded' variant='outline-primary'>LogOut</Link>
+                                <div title={user?.displayName} >
+                                    <Image style={{ height: "40px" }} roundedCircle src={user?.photoURL} />
+                                </div>
+                            </>
+                            :
+                            <>
+                                <Link to="/login">  Login</Link>
+                            </>
+                        }
+                    </Nav>
+                </div>
             </Container>
         </Navbar >
     );

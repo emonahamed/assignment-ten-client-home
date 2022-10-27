@@ -11,6 +11,7 @@ const ref = React.createRef();
 
 const CourseDetails = () => {
     const { id } = useParams();
+    console.log(id)
     // const [courseDetails, SetCourseDetails] = useState([]);
 
     const details = useLoaderData();
@@ -33,11 +34,11 @@ const CourseDetails = () => {
                     <Card.Body style={{ width: '800px', height: '100%' }} ref={ref}>
 
                         <Card.Title> </Card.Title>
-                        <Card.Img variant="top" src={Eachdetails.author.img} />
+                        <Card.Img variant="top" className='img-fluid' src={Eachdetails.author.img} />
                         <Card.Text className='p-3'>
                             <h5>{Eachdetails.details}</h5>
                         </Card.Text>
-                        <Button variant="warning"> <Link to='/checkout'>Get Premium access</Link>  </Button>
+                        <Button variant="warning"> <Link to={`/checkout/${id}`}>Get Premium access</Link>  </Button>
                     </Card.Body>
                 </Card>
 
